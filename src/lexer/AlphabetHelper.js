@@ -1,6 +1,6 @@
 
 class AlphabetHelper {
-  
+    //词法分析工具类，用于判断一个字符的类型
     static ptnLetter = /^[a-zA-Z]$/
     static ptnNumber = /^[0-9]$/
     static ptnLiteral = /^[_a-zA-Z0-9]$/

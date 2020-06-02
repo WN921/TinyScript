@@ -1,15 +1,13 @@
 /**
- * 异常处理
+ * 词法分析工具类，异常处理工具类。表示词法分析阶段出错
  */
-class LexicalException extends Error {
-
+class LexicallException extends Error{
     constructor(msg){
-        super(msg)
+        super(msg);
     }
-
-    static fromChar(c) {
-        return new LexicalException(`unexpected char ${c}`)
+    static fromChar(c){
+        return new LexicallException(`unexpected char ${c}`)
     }
 }
 
-module.exports = LexicalException
+module.exports = LexicallException;

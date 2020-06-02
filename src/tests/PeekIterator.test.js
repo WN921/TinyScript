@@ -1,7 +1,6 @@
 const PeekIterator = require('../common/PeekIterator')
 const arrayToGenerator = require('../common/arrayToGenerator')
-
-const {assert} = require('chai')
+const {assert} = require('chai');
 
 describe('test PeekIterator', () => {
     it('test_peek', () => {

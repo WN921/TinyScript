@@ -1,21 +1,21 @@
-const Token = require('../lexer/Token')
-const Lexer = require('../lexer/Lexer')
-const TokenType = require('../lexer/TokenType')
-const arrayToGenerator = require('../common/arrayToGenerator')
-const {assert} = require('chai')
-
-function assertToken(token, value, type) {
-    assert.equal(token.getValue(), value)
-    assert.equal(token.getType(), type)
-}
+const Token = require('../lexer/Token');
+const TokenType = require('../lexer/TokenType');
+const {assert} = require('chai');
+const arrayToGenerator = require('../common/arrayToGenerator');
+const PeekIterator = require('../common/PeekIterator');
+const Lexer = require('../lexer/Lexer');
 
 describe("Lexer", () => {
+    function assertToken(token, value, type){
+        assert.equal(token.getValue(), value);
+        assert.equal(token.getType(), type);
+    }
 
     it('expression', () => {
-        const source = '(a+b)^100.12==+100-20'
-        const lexer = new Lexer()
-        const tokens = lexer.analyse(arrayToGenerator([...source]))
-        assert.equal(tokens.length, 11)
+        const source = '(a+b)^100.12==+100-20';
+        const lexer = new Lexer();
+        const tokens = lexer.analyse(arrayToGenerator([...source]));
+        assert.equal(tokens.length, 11);
 
         assertToken(tokens[0], '(', TokenType.BRACKET)
         assertToken(tokens[1], "a", TokenType.VARIABLE);
@@ -28,7 +28,6 @@ describe("Lexer", () => {
         assertToken(tokens[8], "+100", TokenType.INTEGER);
         assertToken(tokens[9], "-", TokenType.OPERATOR);
         assertToken(tokens[10], "20", TokenType.INTEGER);
-        
     })
 
     it("func", () => {
@@ -61,20 +60,16 @@ describe("Lexer", () => {
         assertToken(tokens[18], ",", TokenType.OPERATOR);
         assertToken(tokens[19], "100", TokenType.INTEGER);
         assertToken(tokens[20], ")", TokenType.BRACKET);
-
     })
 
-    it("delete comment", () =>{
-        const lexer = new Lexer()
-        const source = "/*123123123\n123123123*/a=1"
-        const tokens = lexer.analyse(arrayToGenerator([...source]))
-        assert.equal(tokens.length, 3)
-    })
+    it("delete comment", () => {
+        const lexer = new Lexer();
+        const source = "/*123313523532184329848239492\n12321321312\n214324234*/a=1";
+        const tokens = lexer.analyse(arrayToGenerator([...source]));
+        assert.equal(tokens.length,3);
 
-    it("delete one line comment", () => {
-        const lexer = new Lexer()
-        const source = "//adnwjdbakd\na=1"
-        const tokens = lexer.analyse(arrayToGenerator([...source]))
-        assert.equal(tokens.length, 3)
+        source1 = "//asdadadsadasdasd\na+b";
+        const tokens1 = lexer.analyse(arrayToGenerator([...source]));
+        assert.equal(tokens1.length,3);
     })
 })

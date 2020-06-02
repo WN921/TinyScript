@@ -1,5 +1,7 @@
-const { assert } = require('chai')
-const AlphabetHelper = require('../lexer/AlphabetHelper')
+const { assert } = require('chai');
+const PeekIterator = require('../common/PeekIterator')
+const AlphabetHelper = require('../lexer/AlphabetHelper');
+const arrayToGenerator = require('../common/arrayToGenerator')
 
 describe("AlphabetHelper", () => {
     it('charCheck', () => {
